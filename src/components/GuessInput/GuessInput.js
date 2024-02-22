@@ -16,6 +16,7 @@ function GuessInput() {
       type="text" 
       value={guessInput}
       pattern="\w{5,5}"
+      required
       onChange={event => {
         setGuessInput(event.target.value)
       }}
