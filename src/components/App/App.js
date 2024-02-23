@@ -12,10 +12,12 @@ function App() {
   const [guesses, setGuesses] = React.useState(range(0, 6).map(() => {
     return {
       id: crypto.randomUUID(),
+      word: '',
       value: range(0, 5).map(() => {
         return {
           id: crypto.randomUUID(),
           letter: '',
+          status: '',
         }
       }),
     };
@@ -27,6 +29,7 @@ function App() {
 
     if (guessCount < NUM_OF_GUESSES_ALLOWED) {
       const nextGuesses = [...guesses];
+      nextGuesses[guessCount].word = word;
       nextGuesses[guessCount].value.map((valueEntry, index) => {
         valueEntry.letter = word[index]
       })

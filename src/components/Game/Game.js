@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { sample } from '../../utils';
+import { checkGuess } from '../../game-helpers';
 import { WORDS } from '../../data';
 
 import GuessResults from '../GuessResults'
@@ -12,7 +13,14 @@ console.info({ answer });
 
 function Game({ guesses }) {
   return (
-    <GuessResults guesses={guesses} />
+    <GuessResults guesses={guesses.map((guess) => {
+      if (guess.word.length > 0) {
+        checkGuess(guess.word, answer).map((checkGuessEntry, index) => {
+          guess.value[index].status = checkGuessEntry.status
+        })
+      }
+      return guess;
+    })} />
   );
 }
 
